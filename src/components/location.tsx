@@ -26,7 +26,7 @@ const Location = () => {
             allCities.splice(0, 1);
         }
 
-        setCities([newCity, ...cities]);
+        setCities([...cities, newCity]);
     };
 
     React.useEffect(() => {
@@ -39,8 +39,9 @@ const Location = () => {
 
     return <div>
 
-        <input type='text' value={searchCity} onChange={(evt) => setSearchCity(evt.target.value)} />
-        <button onClick={handleSearch}>Search</button>
+        <input
+            className="border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" type='text' value={searchCity} onChange={(evt) => setSearchCity(evt.target.value)} />
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded shadow" type="button" onClick={handleSearch}>Search</button>
 
         {
             loading ? <p>Loading...</p> : error.message ? <p>Error: {error.message}</p> : <p>Search for a new city</p>
@@ -50,9 +51,9 @@ const Location = () => {
         <br />
         <div>
             <h3>Added Cities:</h3>
-            <ul>
+            <ul className='list-none p-0'>
                 {cities.map((c, index) => (
-                    <li key={index} onClick={() => handleWeatherByCoords(c.lat as number, c.lon as number)}>{c.name}</li>
+                    <li className='cursor-pointer' key={index} onClick={() => handleWeatherByCoords(c.lat as number, c.lon as number)}>{c.name}</li>
                 ))}
             </ul>
         </div>
