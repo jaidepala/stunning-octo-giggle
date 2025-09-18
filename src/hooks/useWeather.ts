@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const APP_ID = "a095eee8cc7e02960c6118201e389cc2";
+const APP_ID = process.env.REACT_APP_OPEN_WEATHER_APP_ID;
 
 // Add weather type
 type Weather = any;
@@ -10,8 +10,6 @@ const useWeatherLocation = () => {
   const [error, setError] = useState({ message: "" });
   const [weatherData, setWeatherData] = useState(null);
   const [locationData, setLocationData] = useState<Weather>({});
-
-  console.log("locationData:", locationData);
 
   const fetchWeather = async (city: string) => {
     if (!city.trim()) return;
